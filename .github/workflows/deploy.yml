@@ -6,7 +6,7 @@ on:
 
 jobs:
   build-and-run:
-    runs-on: ubuntu-latest
+    runs-on: node-github-actions
 
     steps:
       - name: Checkout code
