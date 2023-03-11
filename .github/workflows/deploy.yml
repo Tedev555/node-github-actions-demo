@@ -8,7 +8,8 @@ on:
 
 jobs:
   ci-cd:
-    runs-on: ${{ github.ref == 'main' && 'macbook-pro' || github.ref == 'develop' && 'macmini' }}
+    # runs-on: ${{ github.ref == 'main' && 'macbook-pro' || github.ref == 'develop' && 'macmini' }}
+    runs-on: macmini
 
     steps:
       - name: Checkout code
