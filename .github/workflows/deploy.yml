@@ -1,12 +1,14 @@
-name: Deploy Node App 
+name: Deploy Node App
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - develop
 
 jobs:
-  build-and-run:
-    runs-on: self-hosted
+  ci-cd:
+    runs-on: ${{ github.ref == 'main' && 'macbook-pro' || github.ref == 'develop' && 'macmini' }}
 
     steps:
       - name: Checkout code
