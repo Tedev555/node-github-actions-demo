@@ -1,17 +1,18 @@
-name: Deploy Node App 
+name: Deploy Node App in Production
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  build-and-run:
-    runs-on: self-hosted
+  ci-cd:
+    runs-on: macbook-pro
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
       - name: Build and run Docker container
-        run: |
+        run:
           docker-compose up --build -d
