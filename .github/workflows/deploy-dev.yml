@@ -1,5 +1,5 @@
 name: Deploy Node App in development
-
+# Test 1
 on:
   push:
     branches:
@@ -8,10 +8,15 @@ on:
 jobs:
   ci-cd:
     runs-on: macmini
+    env:
+      PORT: ${{ secrets.PORT }}
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      - name: Display environment variables
+        run: |
+          echo "PORT: $PORT"
 
       - name: Build and run Docker container
         run:
