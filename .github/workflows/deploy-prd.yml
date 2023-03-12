@@ -9,7 +9,7 @@ jobs:
   ci-cd:
     runs-on: macbook-pro
     env:
-      PORT: 3000
+      PORT: ${{ secrets.PORT }}
 
     steps:
       - name: Checkout code
