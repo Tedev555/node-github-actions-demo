@@ -8,7 +8,7 @@ on:
 jobs:
   ci-cd:
     runs-on: macbook-pro
-    env:
+    # env:
       # PORT: ${{ secrets.PORT }}
 
     steps:
