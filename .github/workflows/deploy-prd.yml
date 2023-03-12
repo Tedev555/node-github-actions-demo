@@ -15,9 +15,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
-      - name: Display environment variables
+      - name: Create .env file
         run: |
-          echo "PORT: $PORT"
+          echo "PORT=${{ secrets.PORT }}" >> .env
 
       - name: Build and run Docker container
         run:
