@@ -8,15 +8,13 @@ on:
 jobs:
   ci-cd:
     runs-on: macmini
-    env:
-      PORT: 3000
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Display environment variables
         run: |
-          echo "PORT: $PORT"
+          echo "PORT: ${{secrets.PORT}}"
 
       - name: Build and run Docker container
         run:
