@@ -6,8 +6,28 @@ on:
       - develop
 
 jobs:
+
+  create-envfile:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Make envfile
+      uses: SpicyPizza/create-envfile@v1.3
+      with:
+        envkey_DEBUG: false
+        envkey_PORT: "3000"
+        file_name: .env
+        fail_on_empty: false
+
+    - name: Upload environment file
+      uses: actions/upload-artifact@v2
+      with:
+        name: .env
+        path: .env
+
   ci-cd:
     runs-on: macmini
+    needs: create_env_file
     env:
       PORT: 3000
 
@@ -15,12 +35,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Create .env file
-        uses: actually-colab/github-action-create-env-file@v2.3
+      - name: Download environment file
+        uses: actions/download-artifact@v2
         with:
-          envkey_PORT: 3000
-          file_name: .env
-          fail_on_empty: false
+          name: .env
+          path: .env
+
+      # - name: Create .env file
+      #   uses: actually-colab/github-action-create-env-file@v2.3
+      #   with:
+      #     envkey_PORT: 3000
+      #     file_name: .env
+      #     fail_on_empty: false
 
       - name: Build and run Docker container
         run:
